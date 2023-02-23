@@ -1,53 +1,35 @@
-<h1 class="mb-4"><%= @question.title %></h1>
+<% provide :page_title, 'Show question' %>
+<% currently_at 'Questions' %>
 
-<time datetime="<%= @question.formatted_created_at %>">DateTime:
+<h1 class="mb-4" ><%= @question.title %></h1>
+<time datetime="<%= @question.formatted_created_at %>" >DateTime:
   <%= @question.formatted_created_at %>
 </time>
 <br>
-<p class="lead my-3">
-  <%= @question.body %>
-</p>
 
-<%= link_to 'Edit', edit_question_path(@question), class: 'btn btn-secondary btn-sm' %>
-<%= link_to 'Delete', question_path(@question), class: 'btn btn-dark btn-sm',
-            data: { turbo_method: :delete,  turbo_confirm: 'Are you sure?' } %>
-
-
+<div>
+  <%= sanitize @question.body %>
+</div>
+<div class="btn-group">
+  <%= link_to 'Edit', edit_question_path(@question), class: 'btn btn-secondary btn-sm' %>
+  <%= link_to 'Delete', question_path(@question), class: 'btn btn-dark btn-sm',
+              data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+</div>
 <hr class="my-3">
 
 <h1>Write your answer</h1>
 
-<%= render 'shared/errors', object: @answer %>
+<%= render 'answers/form' %>
 
-<%= form_with model: [@question, @answer], data: {turbo: false } do |f| %>
-  <div class="mb-3 row">
-    <div class="col-sm col-form-label">
-      <%= f.label :body %>
-    </div>
-
-    <div class="col-sm-11">
-      <%= f.text_field :body, class: 'form-control' %>
-    </div>
-  </div>
-  <%= f.submit "Submit answer!", class: 'btn btn-secondary' %>
-  <hr class="my-3">
-<% end %>
+<hr class="my-3">
 
 <h1>Answers</h1>
 
-<% @answers.each do |answer| %>
-  <article class="mb-3">
-    <time datetime="<%= answer.formatted_created_at %>">DateTime:
-      <%= answer.formatted_created_at %>
-    </time>
-    <p>
-      <%= answer.body %>
-    </p>
+<%= paginate @answers %>
 
+<%#= @question.answers.inspect %>
 
+<%= render partial: 'answers/answer', collection: @answers,
+           as: :answer, locals: { question: @question } %>
 
-    <%= link_to 'Delete', question_answer_path(@question, answer), class: 'btn btn-secondary',
-                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}%>
-  </article>
-  <hr class="my-3">
-<% end %>
+<%= paginate @answers %>
