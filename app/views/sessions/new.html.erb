@@ -1,0 +1,74 @@
+<% provide :page_title, 'Log In' %>
+<% currently_at 'Log In' %>
+
+<%= stylesheet_link_tag "index", "data-turbo-track": "reload" %>
+<%#= image_tag "background6.jpg" %>
+
+<%= form_with url: session_path do |f| %>
+  <section>
+    <div class="form-box">
+      <div class="form-value">
+        <form action="">
+          <h2>Login</h2>
+          <div class="inputbox">
+            <ion-icon name="mail-outline"></ion-icon>
+            <%= f.text_field :email, value: params[:email], required: true %>
+            <label for=""><%= f.label :email %></label>
+          </div>
+          <div class="inputbox">
+            <ion-icon name="lock-closed-outline"></ion-icon>
+            <%= f.password_field :password, required: true %>
+            <label for=""><%= f.label :password %></label>
+          </div>
+          <div class="forget">
+            <%= f.check_box :remember_me, class: 'form-check-input', value: '1' %>
+            <label for=""><%= f.label :remember_me%></label>
+          </div>
+          <%= f.submit "Log In!", class: 'form-submit-button' %>
+          <div class="register">
+            <p>Don't have a account <a href="<%= new_user_path %>">Register</a></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+<% end %>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+
+<!--<h1 class="mb-4">Log In</h1>-->
+
+<%#= form_with url: session_path do |f| %>
+<!--  <div class="mb-3 row">-->
+<!--    <div class="col-sm-2 col-form-label">-->
+<%#= f.label :email %>
+<!--    </div>-->
+
+<!--    <div class="col-sm-4">-->
+<%#= f.email_field :email, value: params[:email], placeholder: 'E-mail', class: 'form-control form-control-lg' %>
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="mb-3 row">-->
+<!--    <div class="col-sm-2 col-form-label">-->
+<%#= f.label :password %>
+<!--    </div>-->
+
+<!--    <div class="col-sm-4">-->
+<%#= f.password_field :password, class: 'form-control form-control-lg' %>
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="row mb-3">-->
+<!--    <div class="offset-sm-2 col-sm-10">-->
+<!--      <div class="form-check">-->
+<%#= f.check_box :remember_me, class: 'form-check-input', value: '1' %>
+<%#= f.label :remember_me, class: 'form-check-label' %>
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<%#= f.submit "Sign In!", class: 'btn btn-secondary' %>
+<%# end %>

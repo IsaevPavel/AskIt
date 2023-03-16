@@ -1,0 +1,47 @@
+<% provide :page_title, 'Edit profile' %>
+<% currently_at 'Edit profile' %>
+
+<%= render 'shared/errors', object: @user %>
+
+<%= stylesheet_link_tag "users_edit", "data-turbo-track": "reload" %>
+<%#= image_tag "background6.jpg" %>
+
+<%= form_with model: @user do |f| %>
+  <section>
+    <div class="form-box">
+      <div class="form-value">
+        <form action="">
+          <h2>Registration</h2>
+          <div class="inputbox">
+            <ion-icon name="mail-outline"></ion-icon>
+            <%= f.text_field :email, required: true %>
+            <label for=""><%= f.label :email %></label>
+          </div>
+          <div class="inputbox">
+            <ion-icon name="person-outline"></ion-icon>
+            <%= f.text_field :name, required: true %>
+            <label for=""><%= f.label :name %></label>
+          </div>
+          <div class="inputbox">
+            <ion-icon name="lock-closed-outline"></ion-icon>
+            <%= f.password_field :password, required: true %>
+            <label for=""><%= f.label :password %></label>
+          </div>
+          <div class="inputbox">
+            <ion-icon name="lock-closed-outline"></ion-icon>
+            <%= f.password_field :password_confirmation, required: true %>
+            <label for=""><%= f.label :password_confirmation %></label>
+          </div>
+            <div class="inputbox">
+              <ion-icon name="lock-closed-outline"></ion-icon>
+              <%= f.password_field :old_password, required: true %>
+              <label for=""><%= f.label :old_password %></label>
+            </div>
+          <%= f.submit "Save", class: 'form-submit-button' %>
+        </form>
+      </div>
+    </div>
+  </section>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<% end %>
